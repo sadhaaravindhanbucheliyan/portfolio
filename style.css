@@ -907,45 +907,77 @@ background-clip: text; /* Add this standard line */
     font-size: 0.92rem;
 }
 /* ==========================================
-   UPDATED: Domain Competencies (No Skill Bars)
+   ENHANCED: Cyberpunk Glassmorphic Skills
    ========================================== */
 .skills-list {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem; /* Clean vertical structural stacking space */
+    gap: 1rem; /* Creates perfect breathing room gaps between capsules */
+    margin-top: 1.5rem;
 }
 
 .competency-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Pushes name to left, proficiency badge to right */
     align-items: center;
-    padding: 1rem 1.4rem;
-    background: rgba(255, 255, 255, 0.015); /* Sleek backdrop filter baseline */
+    padding: 1.1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.015); /* Sleek backdrop filter match */
     border: 1px solid var(--glass-border);
+    border-left: 4px solid var(--accent-teal); /* High-end sharp indicator strip */
     border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
     transition: var(--transition-medium);
 }
 
-/* Micro-interaction hover script mapping your custom design tokens */
+/* Micro-interaction Hover Script matching Sadha's theme tokens */
 .competency-item:hover {
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(6, 182, 212, 0.4); /* Fired glow using var(--accent-teal) channel */
-    transform: translateX(6px); /* Smooth horizontal shifting accent */
-    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.1);
+    background: rgba(6, 182, 212, 0.04); /* Radiant cyan hue blend */
+    border-color: rgba(6, 182, 212, 0.35);
+    border-left-color: var(--accent-purple); /* Color morphs smoothly on user focus */
+    transform: translateX(6px); /* Interactive layout slide */
+    box-shadow: 0 5px 25px rgba(6, 182, 212, 0.12);
+}
+
+/* Internal glass lighting overlay layer */
+.competency-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), transparent);
+    opacity: 0;
+    transition: var(--transition-medium);
+    pointer-events: none;
+}
+
+.competency-item:hover::after {
+    opacity: 1;
 }
 
 .competency-name {
     font-size: 0.95rem;
     color: var(--text-primary);
     font-weight: 500;
+    z-index: var(--z-normal);
 }
 
 .competency-level {
     font-size: 0.78rem;
-    color: var(--accent-teal); /* High-contrast structural highlight indicator */
+    color: var(--accent-teal); 
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.12em;
+    z-index: var(--z-normal);
+    transition: var(--transition-fast);
+}
+
+/* Glow activation effect when row hover sequence fires */
+.competency-item:hover .competency-level {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--accent-teal), 0 0 20px var(--accent-teal);
 }
 /* ==========================================
    Tools Card Layouts
