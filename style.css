@@ -906,78 +906,47 @@ background-clip: text; /* Add this standard line */
     color: var(--text-secondary);
     font-size: 0.92rem;
 }
-
 /* ==========================================
-   Skills Section Styling
+   UPDATED: Domain Competencies (No Skill Bars)
    ========================================== */
-.skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Side-by-side deck setup */
-    gap: 3rem;
-    align-items: start;
-}
-
-.skills-category {
-    padding: 3rem;
-    height: 100%;
-}
-
-.category-title {
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.category-title i {
-    color: var(--accent-teal);
-}
-
-.category-subtitle {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-}
-
 .skills-list {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1.1rem; /* Clean vertical structural stacking space */
 }
 
-.skill-info {
+.competency-item {
     display: flex;
     justify-content: space-between;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
+    align-items: center;
+    padding: 1rem 1.4rem;
+    background: rgba(255, 255, 255, 0.015); /* Sleek backdrop filter baseline */
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-medium);
 }
 
-.skill-bar {
-    height: 6px;
-    background-color: var(--bg-tertiary);
-    border-radius: var(--radius-full);
-    overflow: hidden;
+/* Micro-interaction hover script mapping your custom design tokens */
+.competency-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(6, 182, 212, 0.4); /* Fired glow using var(--accent-teal) channel */
+    transform: translateX(6px); /* Smooth horizontal shifting accent */
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.1);
 }
 
-.skill-progress {
-    height: 100%;
-    border-radius: var(--radius-full, 10px);
-    background: linear-gradient(90deg, var(--accent-indigo, #6366f1) 0%, var(--accent-teal, #14b8a6) 100%) !important;
-    animation: loadBars 1.8s cubic-bezier(0.1, 1, 0.1, 1) forwards;
-    transform-origin: left;
+.competency-name {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
-@keyframes loadBars {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
-    }
+.competency-level {
+    font-size: 0.78rem;
+    color: var(--accent-teal); /* High-contrast structural highlight indicator */
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.12em;
 }
-
 /* ==========================================
    Tools Card Layouts
    ========================================== */
