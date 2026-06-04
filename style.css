@@ -1157,6 +1157,64 @@ background-clip: text; /* Add this standard line */
     color: var(--text-muted);
     font-style: italic;
 }
+/* ==========================================
+   Project Category List Styling Extension
+   ========================================== */
+.project-list-container {
+    margin: 1.2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.project-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.project-list-item:hover {
+    background: rgba(6, 182, 212, 0.04); /* Subtle teal glow backdrop */
+    border-color: rgba(6, 182, 212, 0.35); /* Interactive focus boundary color */
+    color: var(--text-primary);
+    transform: translateX(4px); /* Clean layout slide micro-interaction */
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.1);
+}
+
+.project-item-name {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.project-item-name i {
+    color: var(--accent-teal);
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.project-list-item:hover .project-item-name i {
+    color: var(--accent-purple); /* Icon color shifts smoothly on focus */
+}
+
+.view-icon {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.project-list-item:hover .view-icon {
+    color: var(--accent-teal);
+    text-shadow: 0 0 8px var(--accent-teal);
+}
 
 /* ==========================================
    Experience Section Timeline Layout
