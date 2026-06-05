@@ -979,48 +979,48 @@ background-clip: text; /* Add this standard line */
     color: var(--text-primary);
     text-shadow: 0 0 10px var(--accent-teal), 0 0 20px var(--accent-teal);
 }
-
 /* ==========================================
-   Tools Card Layouts
+   Tools Card Layouts Overhaul
    ========================================== */
-#skills .tools-grid {
+.tools-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    position: relative;
+    grid-template-columns: repeat(3, 1fr) !important; /* Forces 3 balanced columns across the wide container */
+    gap: 1.8rem;
     width: 100%;
+    margin-top: 2rem;
+    position: relative;
 }
 
 .tool-card {
     background: rgba(255, 255, 255, 0.015);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
-    padding: 1.5rem;
+    padding: 1.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensures content spreads evenly */
-    height: 100%;                  /* Forces cards to match height if side-by-side */
+    justify-content: flex-start;
+    min-height: 190px; /* Sets a rock-solid uniform height across the layout row */
     transition: var(--transition-medium);
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(6, 182, 212, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 .tool-icon {
-    font-size: 1.8rem;
-    color: var(--accent-teal);
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
     display: inline-block;
 }
 
 .tool-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
     font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
     color: var(--text-primary);
 }
 
@@ -1028,15 +1028,37 @@ background-clip: text; /* Add this standard line */
     font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    flex-grow: 1; /* Pushes text area to fill card spaces uniformly */
 }
 
-/* Custom icons colors mapping */
-#tool-excel .tool-icon { color: #1d7044; }
-#tool-pbi .tool-icon { color: #f2c811; }
-#tool-sql .tool-icon { color: #38bdf8; } /* Brightened for dark UI contrast */
-#tool-jira .tool-icon { color: #0052cc; }
-#tool-python .tool-icon { color: #306998; } /* Added explicit Python brand color matching your layout */
+/* Custom Icons Color Calibration Mapping */
+#tool-excel .tool-icon   { color: #1d7044; }
+#tool-pbi .tool-icon     { color: #f2c811; }
+#tool-sql .tool-icon     { color: #38bdf8; } /* Bright high-contrast cyan token */
+#tool-jira .tool-icon    { color: #0052cc; }
+#tool-project .tool-icon { color: #0ea5e9; } /* Safe mapping for MS Project */
+#tool-python .tool-icon  { color: #306998; } /* Iconic Python blue */
+
+/* ==========================================
+   Tools Section Responsive Breakpoints
+   ========================================== */
+@media (max-width: 1024px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Smoothly drops to 2 columns on tablets */
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .tools-grid {
+        grid-template-columns: 1fr !important; /* Stacks to 1 single column for clean mobile feeds */
+        gap: 1.2rem;
+    }
+    
+    .tool-card {
+        min-height: auto; /* Relaxes constraints on tiny mobile screens */
+    }
+}
+
 /* ==========================================
    Projects Section Layout & Cards
    ========================================== */
