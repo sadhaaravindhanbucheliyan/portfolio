@@ -184,7 +184,6 @@ button {
     text-align: center;
 }
 
-/* Typography styles using 'Syne' for bold titles */
 h1, h2, h3, h4 {
     font-family: 'Syne', sans-serif;
     font-weight: 700;
@@ -238,7 +237,6 @@ h1, h2, h3, h4 {
     font-size: 1.1rem;
 }
 
-/* Glassmorphic Panel Base styling */
 .glass-panel {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -429,7 +427,6 @@ h1, h2, h3, h4 {
     gap: 1.5rem;
 }
 
-/* Mobile Toggle Hamburger Icon */
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -439,7 +436,7 @@ h1, h2, h3, h4 {
     background: none;
     border: none;
     cursor: pointer;
-    z-index: var(--z-drawer) + 10;
+    z-index: calc(var(--z-drawer) + 10);
 }
 
 .mobile-menu-toggle .bar {
@@ -450,7 +447,6 @@ h1, h2, h3, h4 {
     transition: var(--transition-medium);
 }
 
-/* Hamburger animations when active */
 .mobile-menu-toggle.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
@@ -562,13 +558,13 @@ h1, h2, h3, h4 {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(6, 182, 212, 0.15);
 }
-/* Container for the overall layout alignment */
+
 .visual-card-hub {
     position: relative;
     width: 100%;
-    max-width: 480px;      /* Fixes layout explosion on ultra-wide desktop monitors */
-    height: 480px;         /* Forces a perfectly stable, square structural aspect ratio */
-    margin: 0 auto;        /* Centers beautifully inside its desktop grid slot */
+    max-width: 480px;
+    height: 480px;
+    margin: 0 auto;
     background: rgba(16, 12, 30, 0.6) !important; 
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
@@ -579,9 +575,8 @@ h1, h2, h3, h4 {
     box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Background SVGs for connecting curves */
 .hub-center-container {
-    position: absolute;    /* Changes from relative to absolute to sit behind pills cleanly */
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -600,7 +595,6 @@ h1, h2, h3, h4 {
     pointer-events: none;
 }
 
-/* Central Isometric 3-Axis Node Design */
 .iso-cube-core {
     position: relative;
     z-index: 4;
@@ -626,7 +620,6 @@ h1, h2, h3, h4 {
     pointer-events: none;
 }
 
-/* Sub mini nodes branching outward */
 .sub-node {
     position: absolute;
     font-size: 1.1rem;
@@ -635,7 +628,6 @@ h1, h2, h3, h4 {
 .node-left { color: #b180ff; bottom: 5px; left: -22px; }
 .node-right { color: #00f2fe; bottom: 5px; right: -22px; }
 
-/* General styles for the floating pills */
 .hub-badge {
     position: absolute;
     display: flex;
@@ -648,7 +640,7 @@ h1, h2, h3, h4 {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 10;
-    width: 215px;          /* Hardcodes width to stop desktop text from snapping into two lines */
+    width: 215px;
     box-sizing: border-box;
 }
 
@@ -658,14 +650,14 @@ h1, h2, h3, h4 {
     font-weight: 600;
     margin: 0;
     color: #ffffff;
-    white-space: nowrap;   /* Ensures text string never breaks into multiple lines */
+    white-space: nowrap;
 }
 
 .hub-badge p {
     font-size: 0.75rem !important;
     margin: 2px 0 0 0;
     color: #8fa0dd;
-    white-space: nowrap;   /* Keeps subtext beautifully linear */
+    white-space: nowrap;
 }
 
 .badge-icon {
@@ -674,19 +666,16 @@ h1, h2, h3, h4 {
     align-items: center;
 }
 
-/* Specific Brand Accents for Icons */
 .icon-cyan { color: #00f2fe; }
 .icon-blue { color: #38bdf8; }
 .icon-purple { color: #a855f7; }
 .icon-blue-alt { color: #0ea5e9; }
 
-/* Precise Absolute Coordinates - Retains your layout ratios safely */
 .badge-tl { top: 10%; left: 5%; }
 .badge-tr { top: 26%; right: 5%; }
 .badge-bl { bottom: 26%; left: 5%; }
 .badge-br { bottom: 10%; right: 5%; }
 
-/* Neon Highlight Profiles from the reference image */
 .active-glow-blue {
     background: rgba(22, 28, 45, 0.95);
     border: 1.5px solid #38bdf8;
@@ -697,13 +686,12 @@ h1, h2, h3, h4 {
     box-shadow: -10px 10px 30px rgba(168, 85, 247, 0.15);
 }
 
-/* Micro-interactions to bring it to life */
 .hub-badge:hover {
     transform: translateY(-4px);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
-/* Responsive Scaling Support */
+
 @media (max-width: 768px) {
     .visual-card-hub {
         min-height: 520px;
@@ -716,9 +704,9 @@ h1, h2, h3, h4 {
     .badge-tr { top: 22%; right: 2%; }
     .badge-bl { bottom: 24%; left: 2%; }
     .badge-br { bottom: 4%; right: 2%; }
-    .hub-connecting-lines { display: none; } /* Hide complex lines on mobile display variants */
+    .hub-connecting-lines { display: none; }
 }
-/* Scroll indicator animation */
+
 .scroll-indicator {
     position: absolute;
     bottom: 3rem;
@@ -885,9 +873,9 @@ h1, h2, h3, h4 {
     font-size: 1.5rem;
     color: rgba(6, 182, 212, 0.3);
     background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-purple) 100%);
--webkit-background-clip: text;
-background-clip: text; /* Add this standard line */
--webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text; 
+    -webkit-text-fill-color: transparent;
     border: 1px solid var(--glass-border);
     padding: 0.4rem 0.8rem;
     border-radius: var(--radius-sm);
@@ -906,40 +894,39 @@ background-clip: text; /* Add this standard line */
     color: var(--text-secondary);
     font-size: 0.92rem;
 }
+
 /* ==========================================
-   ENHANCED: Cyberpunk Glassmorphic Skills
+   Cyberpunk Glassmorphic Skills
    ========================================== */
 .skills-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Creates perfect breathing room gaps between capsules */
+    gap: 1rem; 
     margin-top: 1.5rem;
 }
 
 .competency-item {
     display: flex;
-    justify-content: space-between; /* Pushes name to left, proficiency badge to right */
+    justify-content: space-between; 
     align-items: center;
     padding: 1.1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.015); /* Sleek backdrop filter match */
+    background: rgba(255, 255, 255, 0.015); 
     border: 1px solid var(--glass-border);
-    border-left: 4px solid var(--accent-teal); /* High-end sharp indicator strip */
+    border-left: 4px solid var(--accent-teal); 
     border-radius: var(--radius-sm);
     position: relative;
     overflow: hidden;
     transition: var(--transition-medium);
 }
 
-/* Micro-interaction Hover Script matching Sadha's theme tokens */
 .competency-item:hover {
-    background: rgba(6, 182, 212, 0.04); /* Radiant cyan hue blend */
+    background: rgba(6, 182, 212, 0.04); 
     border-color: rgba(6, 182, 212, 0.35);
-    border-left-color: var(--accent-purple); /* Color morphs smoothly on user focus */
-    transform: translateX(6px); /* Interactive layout slide */
+    border-left-color: var(--accent-purple); 
+    transform: translateX(6px); 
     box-shadow: 0 5px 25px rgba(6, 182, 212, 0.12);
 }
 
-/* Internal glass lighting overlay layer */
 .competency-item::after {
     content: '';
     position: absolute;
@@ -974,32 +961,40 @@ background-clip: text; /* Add this standard line */
     transition: var(--transition-fast);
 }
 
-/* Glow activation effect when row hover sequence fires */
 .competency-item:hover .competency-level {
     color: var(--text-primary);
     text-shadow: 0 0 10px var(--accent-teal), 0 0 20px var(--accent-teal);
 }
+
 /* ==========================================
-   Tools Card Layouts Overhaul
+   Tools Card Layouts Overhaul (FIXED)
    ========================================== */
+#skills {
+    position: relative;
+    clear: both;       /* Completely isolates the previous floating DOM block layout safely */
+    display: block;
+    width: 100%;
+}
+
 .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr) !important; /* Forces 3 balanced columns across the wide container */
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Locks structural balance grid configuration */
     gap: 1.8rem;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 3.5rem;
     position: relative;
 }
 
 .tool-card {
-    background: rgba(255, 255, 255, 0.015);
+    background: rgba(15, 19, 38, 0.4);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: 1.8rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 190px; /* Sets a rock-solid uniform height across the layout row */
+    min-height: 195px; 
+    height: 100%;
     transition: var(--transition-medium);
 }
 
@@ -1033,29 +1028,28 @@ background-clip: text; /* Add this standard line */
 /* Custom Icons Color Calibration Mapping */
 #tool-excel .tool-icon   { color: #1d7044; }
 #tool-pbi .tool-icon     { color: #f2c811; }
-#tool-sql .tool-icon     { color: #38bdf8; } /* Bright high-contrast cyan token */
+#tool-sql .tool-icon     { color: #38bdf8; } 
 #tool-jira .tool-icon    { color: #0052cc; }
-#tool-project .tool-icon { color: #0ea5e9; } /* Safe mapping for MS Project */
-#tool-python .tool-icon  { color: #306998; } /* Iconic Python blue */
+#tool-project .tool-icon { color: #0ea5e9; } 
+#tool-python .tool-icon  { color: #306998; } 
 
 /* ==========================================
    Tools Section Responsive Breakpoints
    ========================================== */
 @media (max-width: 1024px) {
     .tools-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* Smoothly drops to 2 columns on tablets */
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 1.5rem;
     }
 }
 
 @media (max-width: 640px) {
     .tools-grid {
-        grid-template-columns: 1fr !important; /* Stacks to 1 single column for clean mobile feeds */
+        grid-template-columns: 1fr !important;
         gap: 1.2rem;
     }
-    
     .tool-card {
-        min-height: auto; /* Relaxes constraints on tiny mobile screens */
+        min-height: auto;
     }
 }
 
@@ -1167,6 +1161,7 @@ background-clip: text; /* Add this standard line */
     color: var(--text-muted);
     font-style: italic;
 }
+
 /* ==========================================
    Project Category List Styling Extension
    ========================================== */
@@ -1192,10 +1187,10 @@ background-clip: text; /* Add this standard line */
 }
 
 .project-list-item:hover {
-    background: rgba(6, 182, 212, 0.04); /* Subtle teal glow backdrop */
-    border-color: rgba(6, 182, 212, 0.35); /* Interactive focus boundary color */
+    background: rgba(6, 182, 212, 0.04); 
+    border-color: rgba(6, 182, 212, 0.35); 
     color: var(--text-primary);
-    transform: translateX(4px); /* Clean layout slide micro-interaction */
+    transform: translateX(4px); 
     box-shadow: 0 4px 15px rgba(6, 182, 212, 0.1);
 }
 
@@ -1212,7 +1207,7 @@ background-clip: text; /* Add this standard line */
 }
 
 .project-list-item:hover .project-item-name i {
-    color: var(--accent-purple); /* Icon color shifts smoothly on focus */
+    color: var(--accent-purple); 
 }
 
 .view-icon {
@@ -1274,7 +1269,7 @@ background-clip: text; /* Add this standard line */
     border: 3px solid var(--accent-teal);
     transform: translateX(-50%);
     transition: var(--transition-fast);
-    z-index: var(--z-normal) + 5;
+    z-index: calc(var(--z-normal) + 5);
 }
 
 .timeline-item.right .timeline-dot {
@@ -1377,7 +1372,9 @@ background-clip: text; /* Add this standard line */
     color: var(--text-secondary);
 }
 
-/* Extracurricular Cards container */
+/* ==========================================
+   Extracurricular Section & Footers
+   ========================================== */
 .extracurricular-header {
     margin-top: 6rem;
     margin-bottom: 3rem;
@@ -1409,18 +1406,10 @@ background-clip: text; /* Add this standard line */
 
 .extra-body h5 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--accent-purple);
+    margin-bottom: 1rem;
 }
-
-.extra-body p {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
 /* ==========================================
    Contact Section Form & Styling
    ========================================== */
