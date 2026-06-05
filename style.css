@@ -1038,29 +1038,6 @@ background-clip: text; /* Add this standard line */
 #tool-jira .tool-icon { color: #0052cc; }
 #tool-python .tool-icon { color: #306998; } /* Added explicit Python brand color matching your layout */
 /* ==========================================
-   ADDED: Responsive Layout Rules
-   ========================================== */
-@media (max-width: 1024px) {
-    /* Stacks Domain Competencies top and Technical Tools bottom on tablets */
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    
-    .skills-category {
-        padding: 2rem; /* Save panel padding space on smaller devices */
-    }
-}
-
-@media (max-width: 640px) {
-    /* Stacks individual tool cards vertically into single strips on cell phones */
-    .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-}
-
-/* ==========================================
    Projects Section Layout & Cards
    ========================================== */
 .projects-grid {
