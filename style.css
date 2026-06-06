@@ -1411,7 +1411,7 @@ h1, h2, h3, h4 {
     margin-bottom: 1rem;
 }
 /* ==========================================
-   Centered Standalone Contact Card
+   Centered Standalone Contact Card Layout
    ========================================== */
 .contact-center-wrapper {
     display: flex;
@@ -1422,18 +1422,19 @@ h1, h2, h3, h4 {
 }
 
 .contact-info-card {
-    max-width: 600px; /* Limits the card width so it doesn't stretch too wide */
+    max-width: 650px;
     width: 100%;
     padding: 3.5rem;
     position: relative;
     overflow: hidden;
+    text-align: left;
 }
 
 .contact-info-card h3 {
     font-family: 'Syne', sans-serif;
     font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
     color: var(--text-primary);
 }
 
@@ -1457,7 +1458,6 @@ h1, h2, h3, h4 {
     transition: var(--transition-fast);
 }
 
-/* Subtle interactive slide-and-glow effect on hover */
 .info-item-row:hover {
     transform: translateX(6px);
 }
@@ -1468,10 +1468,12 @@ h1, h2, h3, h4 {
     justify-content: center;
     width: 46px;
     height: 46px;
+    min-width: 46px;
     border-radius: var(--radius-sm);
     background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--glass-border);
     font-size: 1.1rem;
+    color: var(--accent-teal);
     transition: var(--transition-medium);
 }
 
@@ -1479,35 +1481,103 @@ h1, h2, h3, h4 {
     background-color: rgba(6, 182, 212, 0.08);
     border-color: rgba(6, 182, 212, 0.35);
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+    color: var(--text-primary);
 }
 
-.item-text-content span {
+.item-text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.label-heading {
     display: block;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--text-muted);
-    margin-bottom: 0.2rem;
 }
 
-.item-text-content a,
-.location-text {
+.contact-link,
+.location-value {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-primary);
     transition: var(--transition-fast);
 }
 
-.location-text small {
-    display: inline-block;
-    font-weight: 400;
-    color: var(--accent-teal);
-    margin-left: 0.4rem;
-}
-
-.item-text-content a:hover {
+.contact-link:hover {
     color: var(--accent-teal);
     text-shadow: 0 0 8px var(--text-glow);
+}
+
+/* ==========================================
+   Premium Unified Footer Section
+   ========================================== */
+.portfolio-footer {
+    border-top: 1px solid var(--glass-border);
+    background: rgba(5, 7, 14, 0.9);
+    padding: 2.5rem 0;
+    margin-top: 6rem;
+    position: relative;
+    z-index: var(--z-normal);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.footer-logo span {
+    color: var(--accent-teal);
+}
+
+.footer-role-tags {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+.footer-right-copyright p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.footer-right-copyright strong {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ==========================================
+   Responsive Mobile Adjustments
+   ========================================== */
+@media (max-width: 768px) {
+    .contact-info-card {
+        padding: 2.5rem 1.8rem;
+    }
+    
+    .contact-link,
+    .location-value {
+        font-size: 0.88rem;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+    }
 }
 
 /* ==========================================
