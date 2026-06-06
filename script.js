@@ -14,23 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollPos = window.scrollY;
 
         if (header) {
-            if (scrollPos > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', scrollPos > 50);
         }
 
         if (backToTopBtn) {
-            if (scrollPos > 500) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
+            backToTopBtn.classList.toggle('show', scrollPos > 500);
         }
     };
 
-    window.addEventListener('scroll', handleScrollEffects);
+    window.addEventListener('scroll', handleScrollEffects, { passive: true });
     handleScrollEffects();
 
     // ==========================================
@@ -65,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         if (navMenu && navMenu.classList.contains('active') && 
             !navMenu.contains(e.target) && 
-            !mobileToggle.contains(e.target)) {
+            !mobileToggle?.contains(e.target)) {
             closeMenu();
         }
     });
@@ -86,11 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                 });
             }
         });
@@ -131,8 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 5. Dynamic Project Modals Portfolio Engine
     // ==========================================
-    
-    // Comprehensive structured data for all portfolio projects
     const projectData = {
         "superstore": {
             title: "Executive Superstore Sales Report",
@@ -206,13 +192,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectModal = document.getElementById('project-modal');
     const closeProjectBtn = document.getElementById('close-project-modal');
     
-    // Modal Element Pointers
     const modalTitle = document.getElementById('modal-title');
     const modalImg = document.getElementById('modal-img');
     const modalDesc = document.getElementById('modal-desc');
     const modalTagsContainer = document.getElementById('modal-tags');
 
-    // Attach Click Events to all dynamic items
     projectTriggers.forEach(trigger => {
         trigger.addEventListener('click', (e) => {
             e.preventDefault();
@@ -220,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = projectData[projectKey];
 
             if (data && projectModal) {
-                // Populate the shared popup with specific project info
                 if (modalTitle) modalTitle.textContent = data.title;
                 if (modalImg) {
                     modalImg.src = data.image;
@@ -228,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (modalDesc) modalDesc.textContent = data.desc;
                 
-                // Construct clean tags inside the popup box
                 if (modalTagsContainer) {
                     modalTagsContainer.innerHTML = '';
                     data.tags.forEach(tagText => {
@@ -239,30 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
-                // Make the overlay visible safely
                 projectModal.classList.add('modal-active');
                 document.body.style.overflow = 'hidden';
             }
         });
     });
 
-    // Close button trigger handling setup
-    if (closeProjectBtn && projectModal) {
-        closeProjectBtn.addEventListener('click', () => {
+    const closeModal = () => {
+        if (projectModal) {
             projectModal.classList.remove('modal-active');
             document.body.style.overflow = '';
-        });
-    }
+        }
+    };
 
-    // Outer backdrop closing fallback selection
-    if (projectModal) {
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal) {
-                projectModal.classList.remove('modal-active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
+    closeProjectBtn?.addEventListener('click', closeModal);
+    projectModal?.addEventListener('click', (e) => {
+        if (e.target === projectModal) closeModal();
+    });
 
     // ==========================================
     // 6. Interactive Contact Form Handler
@@ -271,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formSubmitBtn = document.getElementById('form-submit-btn');
     const formFeedback = document.getElementById('form-feedback');
 
-    if (contactForm) {
+    if (contactForm && formSubmitBtn) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -284,20 +259,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btnIcon) btnIcon.className = 'fa-solid fa-circle-notch fa-spin';
             formSubmitBtn.disabled = true;
             
-            const name = document.getElementById('form-name').value;
-            const email = document.getElementById('form-email').value;
-            const subject = document.getElementById('form-subject').value;
-            const message = document.getElementById('form-message').value;
+            // Safe selector handling to prevent unhandled reference crashes
+            const name = document.getElementById('form-name')?.value || '';
+            const email = document.getElementById('form-email')?.value || '';
+            const subject = document.getElementById('form-subject')?.value || '';
+            const message = document.getElementById('form-message')?.value || '';
 
             console.log('Sending message:', { name, email, subject, message });
 
+            // Simulating API action delay
             setTimeout(() => {
                 if (btnText) btnText.textContent = 'Message Sent!';
                 if (btnIcon) btnIcon.className = 'fa-solid fa-check';
                 
                 if (formFeedback) {
                     formFeedback.style.display = 'block';
-                    formFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully. I will get back to you shortly.`;
+                    formFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully.`;
                     formFeedback.className = 'form-feedback success';
                 }
 
