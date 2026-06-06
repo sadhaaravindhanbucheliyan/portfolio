@@ -1052,7 +1052,6 @@ h1, h2, h3, h4 {
         min-height: auto;
     }
 }
-
 /* ==========================================
    Projects Section Layout & Cards
    ========================================== */
@@ -1060,6 +1059,7 @@ h1, h2, h3, h4 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.2rem;
+    margin-top: 2rem;
 }
 
 .project-card {
@@ -1101,6 +1101,7 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .project-info {
@@ -1126,26 +1127,6 @@ h1, h2, h3, h4 {
     margin-bottom: 1.5rem;
     flex-grow: 1;
     line-height: 1.5;
-}
-
-.project-highlights {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.8rem;
-}
-
-.project-highlights span {
-    font-size: 0.85rem;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.project-highlights i {
-    color: var(--accent-teal);
-    font-size: 0.8rem;
 }
 
 .project-footer {
@@ -1221,6 +1202,146 @@ h1, h2, h3, h4 {
     text-shadow: 0 0 8px var(--accent-teal);
 }
 
+/* ==========================================
+   Project Modal / Popup System
+   ========================================== */
+
+/* Dark Blurred Backdrop Overlay */
+.project-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(5, 7, 15, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: var(--z-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-medium);
+    padding: 2rem;
+}
+
+/* JavaScript Trigger Hook State */
+.project-modal-overlay.modal-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Modal Content Card Frame (~50% width look) */
+.project-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 850px; 
+    max-height: 85vh;
+    background: var(--glass-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-md);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(30px);
+    transition: transform var(--transition-medium);
+}
+
+.project-modal-overlay.modal-active .project-modal-content {
+    transform: translateY(0);
+}
+
+/* Media Presentation Frame */
+.modal-media-wrapper {
+    width: 100%;
+    background: #000;
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.modal-media {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+}
+
+/* Modal Typography & Body Layout */
+.modal-text-details {
+    padding: 2.5rem;
+}
+
+.modal-text-details h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* Add this line right here to satisfy modern validation rules */
+}
+
+.modal-text-details p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Close Action Interface Component */
+.modal-close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: rgba(8, 11, 22, 0.6);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: var(--accent-purple);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* ==========================================
+   Responsive Media Queries 
+   ========================================== */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-modal-overlay {
+        padding: 1rem;
+    }
+    
+    .modal-text-details {
+        padding: 1.5rem;
+    }
+    
+    .modal-text-details h3 {
+        font-size: 1.4rem;
+    }
+}
 /* ==========================================
    Experience Section Timeline Layout
    ========================================== */

@@ -14,22 +14,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollPos = window.scrollY;
 
         // Header glass visual update
-        if (scrollPos > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (header) {
+            if (scrollPos > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
 
         // Back to top floating button visibility
-        if (scrollPos > 500) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
+        if (backToTopBtn) {
+            if (scrollPos > 500) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
         }
     };
 
     window.addEventListener('scroll', handleScrollEffects);
-    // Initial check in case page is refreshed in the middle
     handleScrollEffects();
 
     // ==========================================
@@ -40,28 +43,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
 
     const toggleMenu = () => {
+        if (!mobileToggle || !navMenu) return;
         mobileToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
-        // Prevent body scrolling when menu is active
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     };
 
     const closeMenu = () => {
+        if (!mobileToggle || !navMenu) return;
         mobileToggle.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.style.overflow = '';
     };
 
-    mobileToggle.addEventListener('click', toggleMenu);
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', toggleMenu);
+    }
 
-    // Close menu when clicking nav links
     navLinks.forEach(link => {
         link.addEventListener('click', closeMenu);
     });
 
-    // Close mobile menu when clicking outside of it
     document.addEventListener('click', (e) => {
-        if (navMenu.classList.contains('active') && 
+        if (navMenu && navMenu.classList.contains('active') && 
             !navMenu.contains(e.target) && 
             !mobileToggle.contains(e.target)) {
             closeMenu();
@@ -75,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const navObserverOptions = {
         root: null,
-        rootMargin: '-30% 0px -60% 0px', // Trigger when section occupies the main viewport area
+        rootMargin: '-30% 0px -60% 0px',
         threshold: 0
     };
 
@@ -101,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const revealItems = document.querySelectorAll('.glass-panel, .info-card, .project-card, .timeline-item, .extra-card, .hero-content, .hero-visual');
     
-    // Add CSS initial state class dynamically
     revealItems.forEach(item => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
@@ -110,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const revealObserverOptions = {
         root: null,
-        rootMargin: '0px 0px -100px 0px', // Trigger slightly before element enters viewport
+        rootMargin: '0px 0px -100px 0px',
         threshold: 0.1
     };
 
@@ -120,15 +123,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = entry.target;
                 target.style.opacity = '1';
                 target.style.transform = 'translateY(0)';
-                observer.unobserve(target); // Only animate once
+                observer.unobserve(target);
             }
         });
     }, revealObserverOptions);
 
     revealItems.forEach(item => revealObserver.observe(item));
 
-  document.addEventListener('DOMContentLoaded', () => {
-   
+    // ==========================================
+    // 5. Project Modals / Popups Handler
+    // ==========================================
+    const openBtn = document.getElementById('open-superstore-modal');
+    const closeBtn = document.getElementById('close-superstore-modal');
+    const modal = document.getElementById('superstore-modal');
+
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('modal-active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('modal-active');
+            document.body.style.overflow = '';
+        });
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('modal-active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
     // ==========================================
     // 6. Interactive Contact Form Handler
     // ==========================================
@@ -140,45 +172,42 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Change button state to loading
             const btnText = formSubmitBtn.querySelector('span');
             const btnIcon = formSubmitBtn.querySelector('i');
-            const originalText = btnText.textContent;
-            const originalIconClass = btnIcon.className;
+            const originalText = btnText ? btnText.textContent : 'Send Message';
+            const originalIconClass = btnIcon ? btnIcon.className : '';
 
-            btnText.textContent = 'Sending Message...';
-            btnIcon.className = 'fa-solid fa-circle-notch fa-spin';
+            if (btnText) btnText.textContent = 'Sending Message...';
+            if (btnIcon) btnIcon.className = 'fa-solid fa-circle-notch fa-spin';
             formSubmitBtn.disabled = true;
             
-            // Collect Form Values (Useful for real server integrations later)
             const name = document.getElementById('form-name').value;
             const email = document.getElementById('form-email').value;
             const subject = document.getElementById('form-subject').value;
             const message = document.getElementById('form-message').value;
 
-            // Log details in developer console to verify fields are properly mapped
             console.log('Sending message:', { name, email, subject, message });
 
-            // Simulate form submission API call (1.5 seconds delay)
             setTimeout(() => {
-                // Reset button states
-                btnText.textContent = 'Message Sent!';
-                btnIcon.className = 'fa-solid fa-check';
+                if (btnText) btnText.textContent = 'Message Sent!';
+                if (btnIcon) btnIcon.className = 'fa-solid fa-check';
                 
-                // Show positive visual feedback
-                formFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully. I will get back to you shortly.`;
-                formFeedback.className = 'form-feedback success';
+                if (formFeedback) {
+                    formFeedback.style.display = 'block';
+                    formFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully. I will get back to you shortly.`;
+                    formFeedback.className = 'form-feedback success';
+                }
 
-                // Reset form fields
                 contactForm.reset();
 
-                // Reset button back to original state after 3 seconds
                 setTimeout(() => {
-                    btnText.textContent = originalText;
-                    btnIcon.className = originalIconClass;
+                    if (btnText) btnText.textContent = originalText;
+                    if (btnIcon) btnIcon.className = originalIconClass;
                     formSubmitBtn.disabled = false;
-                    formFeedback.style.display = 'none';
-                    formFeedback.className = 'form-feedback';
+                    if (formFeedback) {
+                        formFeedback.style.display = 'none';
+                        formFeedback.className = 'form-feedback';
+                    }
                 }, 4000);
 
             }, 1500);
@@ -199,8 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetSection) {
                 e.preventDefault();
                 
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight + 5; // Offset header plus minor margin
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight + 5;
                 
                 window.scrollTo({
                     top: targetPosition,
@@ -209,5 +238,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
 });
