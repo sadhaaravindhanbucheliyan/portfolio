@@ -383,7 +383,7 @@
                     </p>
                     
                     <div class="project-list-container">
-                        <a href="javascript:void(0);" class="project-list-item" id="open-superstore-modal">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="superstore">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-chart-line"></i>
                                 <span>Executive Superstore Sales Report</span>
@@ -391,7 +391,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="supply-chain-dashboard">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-circle-nodes"></i>
                                 <span>Supply Chain Performance Dashboard</span>
@@ -399,7 +399,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="supplier-tracker">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-truck-ramp-box"></i>
                                 <span>Supplier Delay & Logistics Tracker</span>
@@ -407,7 +407,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="operations-efficiency">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-warehouse"></i>
                                 <span>Operations Efficiency Analysis</span>
@@ -438,7 +438,7 @@
                     </p>
                     
                     <div class="project-list-container">
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="warehouse-pathfinder">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-diamond-turn-right"></i>
                                 <span>Autonomous Warehouse Pathfinder</span>
@@ -446,7 +446,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="operational-flow">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-percent"></i>
                                 <span>Operational Flow Scripting</span>
@@ -454,7 +454,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="risk-engine">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-calculator"></i>
                                 <span>Risk Matrix & Feasibility Engine</span>
@@ -462,7 +462,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="etl-automation">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-database"></i>
                                 <span>Supply Chain Dataset ETL Automation</span>
@@ -492,7 +492,7 @@
                     </p>
                     
                     <div class="project-list-container">
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="grid-storage">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-link"></i>
                                 <span>Long-Duration Grid Storage Study</span>
@@ -500,7 +500,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="tars-wbs">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-sitemap"></i>
                                 <span>TARS System Project Plan (WBS)</span>
@@ -508,7 +508,7 @@
                             <div class="view-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                         </a>
                         
-                        <a href="#" class="project-list-item">
+                        <a href="javascript:void(0);" class="project-list-item project-trigger" data-project="capsule-landing">
                             <div class="project-item-name">
                                 <i class="fa-solid fa-shield-halved"></i>
                                 <span>Safe Capsule Landing System</span>
@@ -527,34 +527,26 @@
     </div>
 </section>
 
-<div class="project-modal-overlay" id="superstore-modal">
+<div class="project-modal-overlay" id="project-modal">
     <div class="project-modal-content glass-panel">
         
-        <button class="modal-close-btn" id="close-superstore-modal" aria-label="Close details popup panel">
+        <button class="modal-close-btn" id="close-project-modal" aria-label="Close details popup panel">
             <i class="fa-solid fa-xmark">×</i>
         </button>
         
         <div class="modal-media-wrapper">
-            <img src="assets/projects/superstore-dashboard-view.jpg" alt="Executive Superstore Performance Analytics Dashboard Presentation Interface Screen" class="modal-media">
-            
-            </div>
+            <img src="" alt="" id="modal-img" class="modal-media">
+        </div>
         
         <div class="modal-text-details">
-            <h3>Executive Superstore Sales Report</h3>
-            <p>
-                An interactive and dynamic strategic platform structured to transform complex multi-regional commerce records into high-impact diagnostic performance layers. Includes advanced cohort analysis parameters, profit matrix segment tracking arrays, and predictive modeling configurations.
-            </p>
+            <h3 id="modal-title">Project Title</h3>
+            <p id="modal-desc">Project Description goes here.</p>
             
-            <div class="timeline-tags">
-                <span class="timeline-tag">Power Query</span>
-                <span class="timeline-tag">DAX Calculations</span>
-                <span class="timeline-tag">Data Modeling</span>
-                <span class="timeline-tag">ETL Engineering</span>
-            </div>
+            <div class="timeline-tags" id="modal-tags">
+                </div>
         </div>
         
     </div>
-</div>
 </div>
 
         <!-- Experience Section -->

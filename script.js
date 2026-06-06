@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleScrollEffects = () => {
         const scrollPos = window.scrollY;
 
-        // Header glass visual update
         if (header) {
             if (scrollPos > 50) {
                 header.classList.add('scrolled');
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Back to top floating button visibility
         if (backToTopBtn) {
             if (scrollPos > 500) {
                 backToTopBtn.classList.add('show');
@@ -131,31 +129,136 @@ document.addEventListener('DOMContentLoaded', () => {
     revealItems.forEach(item => revealObserver.observe(item));
 
     // ==========================================
-    // 5. Project Modals / Popups Handler
+    // 5. Dynamic Project Modals Portfolio Engine
     // ==========================================
-    const openBtn = document.getElementById('open-superstore-modal');
-    const closeBtn = document.getElementById('close-superstore-modal');
-    const modal = document.getElementById('superstore-modal');
+    
+    // Comprehensive structured data for all portfolio projects
+    const projectData = {
+        "superstore": {
+            title: "Executive Superstore Sales Report",
+            image: "assets/projects/superstore.jpg",
+            desc: "An interactive, corporate strategic analysis platform built to transform multi-regional sales records into diagnostic layers. Includes automated cohort metrics, segment profit tracking, and custom predictive parameters.",
+            tags: ["Power Query", "DAX Calculations", "Data Modeling", "ETL Engineering"]
+        },
+        "supply-chain-dashboard": {
+            title: "Supply Chain Performance Dashboard",
+            image: "assets/projects/supply-chain.jpg",
+            desc: "A premium analytical control dashboard monitoring supply chain operational health. Features end-to-end flow tracking, order fulfillments, optimization vectors, and bottleneck signaling.",
+            tags: ["Power BI", "Supply Chain Architecture", "KPI Tracking", "Advanced DAX"]
+        },
+        "supplier-tracker": {
+            title: "Supplier Delay & Logistics Tracker",
+            image: "assets/projects/supplier-delay.jpg",
+            desc: "A localized operational ledger tracking inbound carrier latency, lead-time variances, and supplier performance rankings to safeguard warehouse inventory buffers.",
+            tags: ["Logistics Strategy", "Data Analytics", "Performance Metrics", "Power BI"]
+        },
+        "operations-efficiency": {
+            title: "Operations Efficiency Analysis",
+            image: "assets/projects/operations.jpg",
+            desc: "Deep diagnostic metrics monitoring day-to-day fulfillment run-rates, labor utilization models, and outbound throughput efficiency.",
+            tags: ["Operations Research", "Data Visualization", "Process Map", "Power BI"]
+        },
+        "warehouse-pathfinder": {
+            title: "Autonomous Warehouse Pathfinder",
+            image: "assets/projects/pathfinder.jpg",
+            desc: "Algorithmic routing engines calculating the absolute shortest pick-path inside automated storage facilities using node networks and advanced Python logic algorithms.",
+            tags: ["Python", "Pathfinding Algorithms", "Optimization", "A/B Testing"]
+        },
+        "operational-flow": {
+            title: "Operational Flow Scripting",
+            image: "assets/projects/flow-script.jpg",
+            desc: "Automation scripts processing internal queue logs to dynamically forecast inventory capacity constraints and balanced workforce management distributions.",
+            tags: ["Python Automation", "Data Cleansing", "Pandas Core", "Scripting Engine"]
+        },
+        "risk-engine": {
+            title: "Risk Matrix & Feasibility Engine",
+            image: "assets/projects/risk-matrix.jpg",
+            desc: "A computing script parsing risk coefficients across supply lanes, determining operational feasibility scores under disruptive global events.",
+            tags: ["Algorithmic Logic", "Risk Modeling", "Python Developer", "NumPy Integration"]
+        },
+        "etl-automation": {
+            title: "Supply Chain Dataset ETL Automation",
+            image: "assets/projects/etl-pipeline.jpg",
+            desc: "An automated data cleaning engine built to pick up, standardize, handle null values, and structure messy supply chain legacy logs into production-grade reporting formats.",
+            tags: ["ETL Engineering", "Pandas Dataframes", "Data Integration", "Python Scripts"]
+        },
+        "grid-storage": {
+            title: "Long-Duration Grid Storage Study",
+            image: "assets/projects/grid-storage.jpg",
+            desc: "Technical assessment of engineering scalability and cost-benefit frameworks analyzing Compressed Air Energy Storage (CAES) parameters for power grid distributions.",
+            tags: ["CAES Architecture", "Feasibility Study", "Energy Analytics", "Cost Analysis"]
+        },
+        "tars-wbs": {
+            title: "TARS System Project Plan (WBS)",
+            image: "assets/projects/tars-wbs.jpg",
+            desc: "A comprehensive project breakdown detailing the work structures, milestones, resource parameters, and execution timelines for highly sophisticated multi-stage systems.",
+            tags: ["Project Planning", "WBS Architecture", "Resource Matrix", "Risk Management"]
+        },
+        "capsule-landing": {
+            title: "Safe Capsule Landing System",
+            image: "assets/projects/capsule-landing.jpg",
+            desc: "Engineering design study evaluating terminal speed calculations, impact dampeners, and deceleration deployment triggers to protect critical transit payload packages.",
+            tags: ["Engineering Calculations", "System Safety", "Physics Analysis", "Structural Design"]
+        }
+    };
 
-    if (openBtn && modal) {
-        openBtn.addEventListener('click', (e) => {
+    const projectTriggers = document.querySelectorAll('.project-trigger');
+    const projectModal = document.getElementById('project-modal');
+    const closeProjectBtn = document.getElementById('close-project-modal');
+    
+    // Modal Element Pointers
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalTagsContainer = document.getElementById('modal-tags');
+
+    // Attach Click Events to all dynamic items
+    projectTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
             e.preventDefault();
-            modal.classList.add('modal-active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
+            const projectKey = trigger.getAttribute('data-project');
+            const data = projectData[projectKey];
 
-    if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('modal-active');
+            if (data && projectModal) {
+                // Populate the shared popup with specific project info
+                if (modalTitle) modalTitle.textContent = data.title;
+                if (modalImg) {
+                    modalImg.src = data.image;
+                    modalImg.alt = `${data.title} View`;
+                }
+                if (modalDesc) modalDesc.textContent = data.desc;
+                
+                // Construct clean tags inside the popup box
+                if (modalTagsContainer) {
+                    modalTagsContainer.innerHTML = '';
+                    data.tags.forEach(tagText => {
+                        const span = document.createElement('span');
+                        span.className = 'timeline-tag';
+                        span.textContent = tagText;
+                        modalTagsContainer.appendChild(span);
+                    });
+                }
+
+                // Make the overlay visible safely
+                projectModal.classList.add('modal-active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Close button trigger handling setup
+    if (closeProjectBtn && projectModal) {
+        closeProjectBtn.addEventListener('click', () => {
+            projectModal.classList.remove('modal-active');
             document.body.style.overflow = '';
         });
     }
 
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('modal-active');
+    // Outer backdrop closing fallback selection
+    if (projectModal) {
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                projectModal.classList.remove('modal-active');
                 document.body.style.overflow = '';
             }
         });
