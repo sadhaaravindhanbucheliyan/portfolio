@@ -1528,88 +1528,143 @@ h1, h2, h3, h4 {
     z-index: 10;
 }
 
-/* Inner content wrapper keeps the text bounded and readable */
+/* ==========================================
+   Full-Width Integrated Footer Layout
+   ========================================== */
+.portfolio-footer {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-color: #05070e; /* Dark matching tone */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4.5rem 0 2rem 0;
+    margin-top: 6rem;
+    z-index: 10;
+}
+
+/* Inner block contains content nicely within standard desktop grid lines */
 .footer-inner-content {
     max-width: 1200px;
     width: 90%;
     margin: 0 auto;
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Updated Uppercase Branding Styling */
 .footer-logo {
     font-family: 'Syne', sans-serif;
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.05em;
     color: #ffffff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
 }
 
 .footer-logo span {
-    color: #06b6d4; /* Your dynamic teal/cyan accent color */
+    color: #06b6d4; /* Vivid system cyan highlight */
 }
 
 .footer-role-tags {
-    font-size: 0.85rem;
-    color: #94a3b8;
+    font-size: 0.82rem;
+    color: #4b5563; /* Sleek dark blue-grey matching color */
     text-transform: uppercase;
     letter-spacing: 0.12em;
     margin-bottom: 2.5rem;
 }
 
-/* Center Horizontal Navigation Links */
+/* Navigation Menu */
 .footer-nav-links {
     list-style: none;
     padding: 0;
+    margin: 0 0 3.5rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
+    gap: 2.2rem;
     flex-wrap: wrap;
 }
 
 .footer-nav-links a {
-    color: #94a3b8;
+    color: #64748b;
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
-    transition: color 0.25s ease;
+    transition: color 0.2s ease;
 }
 
 .footer-nav-links a:hover {
     color: #06b6d4;
 }
 
-/* Structural Divider Line */
+/* Rule Line Separator */
 .footer-divider {
     width: 100%;
     height: 1px;
-    background: rgba(255, 255, 255, 0.05);
-    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    margin-bottom: 2rem;
+}
+
+/* Split Row Container Setup */
+.footer-bottom-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .footer-copyright p {
     font-size: 0.85rem;
+    color: #334155; /* Soft typography coloring matching image_f15d62.png */
+}
+
+/* Right-aligned Icon Blocks Layout */
+.footer-social-box-list {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.social-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     color: #64748b;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-copyright strong {
-    color: #94a3b8;
-    font-weight: 500;
+.social-icon-btn:hover {
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #06b6d4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
 }
 
-/* Responsive Mobile Stacking */
-@media (max-width: 600px) {
-    .footer-nav-links {
-        gap: 1rem 1.5rem;
+/* Responsive Adaptive Breakpoint */
+@media (max-width: 768px) {
+    .footer-bottom-row {
+        flex-direction: column-reverse; /* Stacks links above text nicely on phone devices */
+        text-align: center;
+        gap: 1.5rem;
     }
     
-    .footer-logo {
-        font-size: 1.6rem;
+    .footer-nav-links {
+        gap: 1.2rem 1.8rem;
+        margin-bottom: 2.5rem;
     }
 }
 /* ==========================================
