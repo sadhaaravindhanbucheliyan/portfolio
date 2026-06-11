@@ -1057,13 +1057,14 @@ h1, h2, h3, h4 {
    Projects Section Layout & Cards
    ========================================== */
 .projects-grid {
-    display: flex;
-    justify-content: center; /* Centers the two cards */
-    gap: 3rem; /* Increases space between cards */
-    flex-wrap: wrap; /* Allows stacking on mobile */
-    max-width: 1000px; /* Keeps the section from stretching too wide */
-    margin: 0 auto;
+    display: grid;
+    /* This creates a 2-column layout on desktop, centered */
+    grid-template-columns: repeat(2, minmax(300px, 450px));
+    justify-content: center;
+    gap: 2.2rem;
+    padding: 0 1rem;
 }
+
 /* Responsive adjustment for tablets/mobile */
 @media (max-width: 768px) {
     .projects-grid {
