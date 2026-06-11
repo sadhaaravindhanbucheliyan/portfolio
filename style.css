@@ -1210,16 +1210,14 @@ h1, h2, h3, h4 {
     text-shadow: 0 0 8px var(--accent-teal);
 } 
 
-/* Bento Grid Container */
+/* Experience section */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     max-width: 1000px;
     margin: 4rem auto;
-    padding: 0 1rem;
 }
-
 /* Base style for all items */
 .bento-item {
     padding: 2rem;
@@ -1234,15 +1232,14 @@ h1, h2, h3, h4 {
 
 /* Span the full width for the "Focus" cell */
 .bento-large {
-    grid-column: span 2;
+    grid-column: span 2; /* Spans the full width */
 }
 
-/* Default cells */
 .bento-small {
-    grid-column: span 1;
+    grid-column: span 1; /* Spans half the width */
 }
 
-/* Responsive: Stack everything on mobile */
+/* Mobile: Stack everything */
 @media (max-width: 768px) {
     .bento-grid {
         grid-template-columns: 1fr;
@@ -1251,7 +1248,6 @@ h1, h2, h3, h4 {
         grid-column: span 1;
     }
 }
-
 /* ==========================================
    Extracurricular Section & Footers
    ========================================== */
