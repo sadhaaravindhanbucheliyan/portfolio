@@ -1058,15 +1058,16 @@ h1, h2, h3, h4 {
    ========================================== */
 .projects-grid {
     display: grid;
-    /* This creates a 2-column layout on desktop, centered */
-    grid-template-columns: repeat(2, minmax(300px, 450px));
+    /* This creates two equal columns with a maximum width for each card */
+    grid-template-columns: repeat(2, minmax(350px, 500px));
     justify-content: center;
-    gap: 2.2rem;
-    padding: 0 1rem;
+    gap: 3rem; /* Increased gap for better breathing room */
+    max-width: 1200px; /* Constrains the grid width */
+    margin: 0 auto;    /* Centers the entire grid container */
 }
 
-/* Responsive adjustment for tablets/mobile */
-@media (max-width: 768px) {
+/* Ensure mobile view stays single column */
+@media (max-width: 992px) {
     .projects-grid {
         grid-template-columns: 1fr;
     }
